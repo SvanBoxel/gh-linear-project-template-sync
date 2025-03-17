@@ -1,8 +1,8 @@
-import loadAndParseMarkdown from './parse-markdown.js';
-
-import linearClient from './linear-client.js';
 import fs from "fs";
 import path from "path";
+
+import loadAndParseMarkdown from './parse-markdown.js';
+import linearClient from './linear-client.js';
 
 async function getLabels(labelNames) {
   const labels = await (await linearClient.team(process.env.LINEAR_TEAM_ID)).labels();
