@@ -1,0 +1,33 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@linear/sdk": "^38.0.0",
+    "dotenv": "^16.4.7",
+    "jsdom": "^26.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-multimd-table": "^4.2.3",
+    "markdown-it-table": "^4.1.1",
+    "multer": "^1.4.5-lts.1",
+    "prosemirror-markdown": "^1.13.1",
+    "prosemirror-model": "^1.24.1",
+    "prosemirror-schema-basic": "^1.2.3",
+    "prosemirror-schema-list": "^1.5.1",
+    "prosemirror-tables": "^1.6.4",
+    "prosemirror-transform": "^1.10.3"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}
