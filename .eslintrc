@@ -1,0 +1,20 @@
+{
+    "extends": [
+      "standard",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:node/recommended",
+      "plugin:promise/recommended"
+    ],
+    "rules": {
+      // You can customize rules here if needed
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    }
+  }
