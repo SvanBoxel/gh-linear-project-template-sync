@@ -5,6 +5,7 @@ import markdownItTable from 'markdown-it-multimd-table';
 import { DOMParser } from 'prosemirror-model';
 import { JSDOM } from 'jsdom';
 import { Transform } from 'prosemirror-transform';
+import mime from 'mime-types';
 
 import createExtendedSchema from './schema.js';
 import uploadFileToLinear from './upload-file-to-linear.js';
@@ -44,16 +45,16 @@ export default async function loadAndParseMarkdown(filename) {
   }
   
   const headerLines = parts[1].trim().split('\n');
-  const headerData = {};
+  const header = {};
   headerLines.forEach(line => {
     if (!line) return;
     const [key, value] = line.split(':').map(part => part.trim());
-    headerData[key] = value.replace(/^["']|["']$/g, '');
+    header[key] = value.replace(/^["']|["']$/g, '');
   });
   
   const body = parts.slice(2).join('---').trim();
   const md = new MarkdownIt({ html: true });
-
+  
   md.use(markdownItTable, {
     multiline: true,
     rowspan: true,
@@ -66,28 +67,16 @@ export default async function loadAndParseMarkdown(filename) {
   const schema = createExtendedSchema();
   const parser = DOMParser.fromSchema(schema);
   
-  const prosemirrorDoc = await replaceAllImagesInDoc(parser.parse(document), async (imageAttrs) => {
+  const content = await replaceAllImagesInDoc(parser.parse(document), async (imageAttrs) => {
     let newSrc = imageAttrs.src
     try {
-      const response = await fetch(imageAttrs.src);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}, file: ${imageAttrs.src}`);
-      }
+      let imagePath = path.join(filename, '..', imageAttrs.src)
 
-      // Get essential metadata
-      const contentType = response.headers.get('content-type') || 'image/jpeg';
-      const size = parseInt(response.headers.get('content-length') || '0', 10);
-      const filename = `image-${Date.now()}.jpg`; 
-      const buffer = response.arrayBuffer();
-      
-      // Upload image to Linear
-      const uploadResponse = await uploadFileToLinear({
-        name: filename,
-        type: contentType,
-        size: size,
-        arrayBuffer: buffer
-      });
+      const fileBuffer = fs.readFileSync(imagePath);
+      const mimeType = mime.lookup(imagePath) || 'application/octet-stream';
+      const fileName = path.basename(imagePath);
+      const file = new File([fileBuffer], fileName, { type: mimeType });
+      const uploadResponse = await uploadFileToLinear(file);
       
       newSrc = uploadResponse;
     } catch (error) {
@@ -100,8 +89,5 @@ export default async function loadAndParseMarkdown(filename) {
     };
   })
   
-  return {
-    header: headerData,
-    content: prosemirrorDoc
-  }
+  return { header, content }
 }
