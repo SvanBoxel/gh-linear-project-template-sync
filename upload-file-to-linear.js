@@ -10,7 +10,6 @@ async function uploadFileToLinear(file) {
   const uploadUrl = uploadPayload.uploadFile.uploadUrl;
   const assetUrl = uploadPayload.uploadFile.assetUrl;
   
-  // Make sure to copy the response headers for the PUT request
   const headers = new Headers();
   headers.set("Content-Type", file.type);
   headers.set("Cache-Control", "public, max-age=31536000");

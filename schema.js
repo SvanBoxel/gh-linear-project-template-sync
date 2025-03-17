@@ -60,8 +60,7 @@ const tableNodeSpec = {
 function createExtendedSchema() {
   const nodes = addListNodes(basicSchema.spec.nodes, "paragraph block*", "block");
   
-  // Add table nodes
-  let schema = new Schema({
+  return new Schema({
     nodes: nodes
     .addToEnd("table", tableNodeSpec.table)
     .addToEnd("table_row", tableNodeSpec.table_row)
@@ -69,8 +68,6 @@ function createExtendedSchema() {
     .addToEnd("table_header", tableNodeSpec.table_header),
     marks: basicSchema.spec.marks
   });
-  
-  return schema;
 }
 
 export default createExtendedSchema;

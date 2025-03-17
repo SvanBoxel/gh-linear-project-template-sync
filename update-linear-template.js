@@ -3,7 +3,6 @@ import linearClient from './linear-client.js';
 
 export async function getLabels(labelNames) {
   const labels = await (await linearClient.team(process.env.LINEAR_TEAM_ID)).labels();
-
   return labels.nodes.filter(l => labelNames.some(n => l.name.toLowerCase().includes(n.toLowerCase()))).map(l => l.id);
 }
 
@@ -47,17 +46,3 @@ export async function updateLinearTemplate(projectTemplate, issues) {
     throw error;
   }
 }
-
-export async function loadTemplate(templateId) {
-  try {
-    const template = await linearClient.template(templateId);
-    console.log("Template loaded successfully:", template.templateData.initialIssues);
-    return template;
-  } catch (error) {
-    console.error("Error loading template:", error);
-    throw error;
-  }
-}
-
-
-// updateLinearTemplate(`${projectFolder}/project-main.md`, issues);
