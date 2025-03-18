@@ -11,6 +11,9 @@ inputs:
   linear_template_id:
     description: 'The Linear template ID'
     required: true
+  linear_token: 
+    description: 'The Linear API token'
+    required: true
 runs:
   using: 'node20'
   main: 'index.js'
