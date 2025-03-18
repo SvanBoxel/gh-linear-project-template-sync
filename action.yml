@@ -1,0 +1,16 @@
+name: 'GitHub Linear Sync'
+description: 'Sync GitHub issues with Linear'
+author: 'sebass.vanboxel'
+inputs:
+  project_folder:
+    description: 'The folder containing the project files'
+    required: true
+  linear_team_id:
+    description: 'The Linear team ID'
+    required: true
+  linear_template_id:
+    description: 'The Linear template ID'
+    required: true
+runs:
+  using: 'node20'
+  main: 'index.js'

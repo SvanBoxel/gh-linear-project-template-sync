@@ -5,6 +5,7 @@ import markdownItTable from 'markdown-it-multimd-table'
 import { DOMParser } from 'prosemirror-model'
 import { JSDOM } from 'jsdom'
 import { Transform } from 'prosemirror-transform'
+import { File } from "formdata-node";
 import mime from 'mime-types'
 
 import createExtendedSchema from './schema.js'
