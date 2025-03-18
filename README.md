@@ -1,6 +1,6 @@
 # GitHub Linear Sync
 
-This action synchronizes GitHub issues with a Linear project template based on a provided template.
+This action allows you to version control a Linear Project Template from GitHub. It will sync the project template with the data from a specified folder in your GitHub repository.
 
 ## Inputs 
 ### `project_folder` (Required)
