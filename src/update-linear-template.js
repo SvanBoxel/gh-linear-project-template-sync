@@ -1,8 +1,8 @@
 import loadAndParseMarkdown from './parse-markdown.js'
-import linearClient from './linear-client.js'
+import { getLinearClient } from './linear-client.js'
 
 export async function getLabels (labelNames) {
-  const labels = await (await linearClient.team(process.env.LINEAR_TEAM_ID)).labels()
+  const labels = await (await getLinearClient().team(process.env.LINEAR_TEAM_ID)).labels()
   return labels.nodes.filter(l => labelNames.some(n => l.name.toLowerCase().includes(n.toLowerCase()))).map(l => l.id)
 }
 
@@ -29,7 +29,7 @@ export async function updateLinearTemplate (projectTemplate, issues) {
     )
 
     console.log('updating template')
-    const result = await linearClient.updateTemplate(templateId, {
+    const result = await getLinearClient().updateTemplate(templateId, {
       name: header.name,
       templateData: {
         title: header.title,

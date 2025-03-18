@@ -15,5 +15,5 @@ inputs:
     description: 'The Linear API token'
     required: true
 runs:
-  using: 'node20'
+  using: 'node16'
   main: 'index.js'

@@ -1,7 +1,7 @@
-import linearClient from './linear-client.js'
+import { getLinearClient } from './linear-client.js'
 
 async function uploadFileToLinear (file) {
-  const uploadPayload = await linearClient.fileUpload(file.type, file.name, file.size)
+  const uploadPayload = await getLinearClient().fileUpload(file.type, file.name, file.size)
 
   if (!uploadPayload.success || !uploadPayload.uploadFile) {
     throw new Error('Failed to request upload URL')

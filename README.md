@@ -51,7 +51,7 @@ It's your first day! Make sure to complete the following tasks:
 > [!IMPORTANT]  
 > Labels need to exist in your linear team before use
 
-### `LINEAR_API_KEY` (Required)
+### `LINEAR_TOKEN` (Required)
 The [Linear API key](https://linear.app/docs/api-and-webhooks#api) used for authentication.
 
 ### `LINEAR_TEAM_ID` (Required)
@@ -96,7 +96,7 @@ jobs:
           node-version: '16'
       - name: Run the sync action
         input:
-          linear_api_key: ${{ secrets.LINEAR_API_KEY }}
+          linear_token: ${{ secrets.LINEAR_TOKEN }}
           linear_team_id: 12345678-1234-1234-1234-123456789abc
           linear_template_id: 12345678-1234-1234-1234-123456789abc
           project_folder: "./linear-template"
@@ -112,13 +112,13 @@ To run the project locally, follow these steps:
 1. **Set Environment Variables**: You can set the environment variables in a `.env` file at the root of the project. Create a `.env` file and add the following lines:
 
    ```plaintext
-   LINEAR_API_KEY=your_linear_api_key
+   LINEAR_TOKEN=your_linear_token
    LINEAR_TEAM_ID=your_linear_team_id
    LINEAR_TEMPLATE_ID=your_linear_template_id
    GITHUB_TOKEN=your_github_token
    ```
 
-Make sure to replace `your_linear_api_key`, `your_linear_team_id`, and `your_linear_template_id` with your actual Linear API key, team ID, and template ID.
+Make sure to replace `your_linear_token`, `your_linear_team_id`, and `your_linear_template_id` with your actual Linear API key, team ID, and template ID.
 
 2. **Install Dependencies**: Ensure you have Node.js installed on your machine. Run the following command to install the project dependencies:
 

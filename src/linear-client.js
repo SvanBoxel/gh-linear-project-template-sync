@@ -3,8 +3,23 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const linearClient = new LinearClient({
-  apiKey: process.env.LINEAR_API_KEY
-})
+function loadLinearClient () {
+  if (!process.env.LINEAR_TOKEN) {
+    throw new Error('LINEAR_TOKEN environment variable not set')
+  }
 
-export default linearClient
+  return new LinearClient({
+    apiKey: process.env.LINEAR_TOKEN
+  })
+}
+
+let linearClientInstance = null
+
+export function getLinearClient () {
+  if (!linearClientInstance) {
+    linearClientInstance = loadLinearClient()
+  }
+  return linearClientInstance
+}
+
+export default linearClientInstance
