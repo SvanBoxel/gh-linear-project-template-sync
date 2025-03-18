@@ -3,7 +3,7 @@ description: 'Version control a Linear Project Template from GitHub by syncing i
 author: 'Sebass van Boxel'
 branding:
   icon: 'chevrons-right'
-  color: 'dark-grey'
+  color: 'gray-dark'
 inputs:
   project_folder:
     description: 'The folder containing the project files'
