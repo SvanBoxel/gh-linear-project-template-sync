@@ -1,5 +1,5 @@
 name: 'GitHub Linear Project Template Sync'
-description: 'This action allows you to version control a Linear Project Template from GitHub. It syncs the project template with the data from a specified folder in your GitHub repository.'
+description: 'Version control a Linear Project Template from GitHub by syncing it with data from a specified folder in your repository'
 author: 'Sebass van Boxel'
 inputs:
   project_folder:
